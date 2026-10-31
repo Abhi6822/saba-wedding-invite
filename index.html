@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Wedding | Saba & Arbaz</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #081711;
+            --bg-deep: #0f1d1a;
+            --bg-card: #123a34;
+            --bg-card-soft: #143f39;
+            --cream-card: #f8f3ed;
+            --cream-text: #2b221f;
+            --gold-primary: #d7b36a;
+            --gold-light: #f4e4b7;
+            --gold-dark: #9c7427;
+            --gold-gradient: linear-gradient(135deg, #d8b36a 0%, #f9edbf 20%, #cb9b3d 50%, #f4df9e 75%, #b37c2d 100%);
+            --emerald: #1e554e;
+            --emerald-soft: #2f756b;
+            --sage: #dfe9e5;
+            --rose: #b97767;
+            --text-light: #f9f5f2;
+            --text-muted: #dfe5df;
+            --text-subtle: #b7c7c2;
+            --border-gold: rgba(215, 179, 106, 0.4);
+            --shadow-gold: 0 18px 48px rgba(15, 29, 26, 0.55);
+            --panel-shadow: 0 24px 60px rgba(10, 17, 15, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top, rgba(28, 73, 66, 0.55), transparent 38%),
+                linear-gradient(180deg, #081711 0%, #0e1d1a 35%, #0a1210 100%);
+            color: var(--text-light);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 22px 22px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ambient Stars & Particle Container */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-30px) scale(1.3); opacity: 0.7; }
+        }
+
+        /* Audio Controller */
+        .audio-btn {
+            position: fixed;
+            right: max(16px, env(safe-area-inset-right));
+            bottom: max(32px, env(safe-area-inset-bottom));
+            width: clamp(42px, 5vw, 52px);
+            height: clamp(42px, 5vw, 52px);
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(18, 46, 40, 0.95), rgba(10, 19, 18, 0.9));
+            border: 1.5px solid rgba(215, 179, 106, 0.75);
+            color: var(--gold-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 0 16px rgba(215,179,106,0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .audio-btn:hover {
+            transform: translateY(-1px) scale(1.02);
+            border-color: rgba(244, 228, 183, 0.95);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.38), 0 0 18px rgba(215,179,106,0.18);
+        }
+
+        .audio-btn i {
+            font-size: 1.12rem;
+            line-height: 1;
+        }
+
+        .audio-btn.playing {
+            animation: pulseGlow 2.6s infinite ease-out;
+            box-shadow: 0 0 0 0 rgba(215, 179, 106, 0.16), 0 8px 24px rgba(215,179,106,0.18), inset 0 0 18px rgba(215,179,106,0.12);
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(215, 179, 106, 0.18), 0 0 0 0 rgba(215, 179, 106, 0.08), 0 8px 24px rgba(215,179,106,0.1);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(215, 179, 106, 0), 0 0 24px rgba(215,179,106,0.22), 0 10px 26px rgba(215,179,106,0.16);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(215, 179, 106, 0), 0 0 0 rgba(215, 179, 106, 0), 0 8px 22px rgba(215,179,106,0.12);
+            }
+        }
+
+        /* ================= GRAND ROYAL GATE ENTRY ================= */
+        #royal-gate-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, #111B30 0%, #05080E 100%);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+
+        .gate-dismissed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .gate-door {
+            position: absolute;
+            top: 0;
+            width: 50vw;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(13, 21, 39, 0.95), rgba(8, 12, 20, 0.98)),
+                        url('https://www.transparenttextures.com/patterns/arabesque.png');
+            border: 2px solid var(--gold-primary);
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .gate-left {
+            left: 0;
+            transform-origin: left center;
+            border-right: 1px solid var(--gold-primary);
+        }
+
+        .gate-right {
+            right: 0;
+            transform-origin: right center;
+            border-left: 1px solid var(--gold-primary);
+        }
+
+        .doors-open .gate-left {
+            transform: rotateY(-105deg);
+        }
+
+        .doors-open .gate-right {
+            transform: rotateY(105deg);
+        }
+
+        .gate-center-badge {
+            position: absolute;
+            z-index: 10001;
+            text-align: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .doors-open .gate-center-badge {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .seal-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            padding: 3px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            margin: 0 auto 20px auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .seal-circle:hover {
+            transform: scale(1.05);
+        }
+
+        .seal-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold-light);
+        }
+
+        .seal-inner i {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 5px;
+        }
+
+        .seal-inner span {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gate-names {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            color: var(--gold-light);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .gate-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* ================= MAIN CONTAINER ================= */
+        .app-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 18px 80px;
+        }
+
+        /* HERO CARD: BRIDE & GROOM HOLDING HANDS */
+        .hands-hero-card {
+            background: linear-gradient(180deg, rgba(6, 13, 11, 0.18), rgba(6, 13, 11, 0.7)),
+                        url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            border-radius: 30px;
+            border: 1px solid var(--border-gold);
+            min-height: 620px;
+            height: min(82vh, 760px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding: 40px clamp(18px, 4vw, 40px);
+            margin: 22px 0 32px;
+            box-shadow: var(--panel-shadow), 0 16px 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hands-hero-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,17,15,0.25), rgba(10,17,15,0.6));
+        }
+
+        .hands-hero-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bismillah {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--gold-light);
+            margin-bottom: 12px;
+            text-shadow: 0 4px 18px rgba(0,0,0,0.7);
+        }
+
+        .hero-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.7rem, 1.5vw, 0.82rem);
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .hero-couple-name {
+            font-family: 'Alex Brush', cursive;
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            color: #FFF;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            line-height: 0.9;
+        }
+
+        .scroll-down-btn {
+            margin-top: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Header Bismillah */
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .bismillah-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .bismillah-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* ================= ROYAL CREAM CARD ================= */
+        .invitation-card-cream {
+            background: linear-gradient(180deg, #f9f4ee 0%, #f3eadf 100%);
+            color: var(--cream-text);
+            border-radius: 30px;
+            padding: clamp(24px, 4vw, 48px) clamp(18px, 3vw, 32px);
+            margin: 25px 0 40px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.16), 0 0 0 1px rgba(157, 116, 31, 0.5);
+            position: relative;
+            text-align: center;
+        }
+
+        .card-inner-border {
+            border: 1.5px solid var(--gold-primary);
+            border-radius: 12px;
+            padding: 35px 20px;
+            position: relative;
+        }
+
+        .card-inner-border::before, .card-inner-border::after {
+            content: '❖';
+            position: absolute;
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            background: var(--cream-card);
+            padding: 0 8px;
+        }
+        .card-inner-border::before { top: -11px; left: 50%; transform: translateX(-50%); }
+        .card-inner-border::after { bottom: -11px; left: 50%; transform: translateX(-50%); }
+
+        .arabic-greeting {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1A2536;
+            margin-bottom: 4px;
+        }
+
+        .greeting-translation {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .gold-divider {
+            width: 90px;
+            height: 2px;
+            background: var(--gold-gradient);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .blessings-header {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--gold-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .family-block {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .family-block strong {
+            color: #111B30;
+            font-weight: 700;
+        }
+
+        .invite-phrase {
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+            margin: 22px 0;
+            line-height: 1.6;
+        }
+
+        .couple-name-box {
+            margin: 30px 0;
+        }
+
+        .couple-display-name {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4.2rem;
+            color: var(--gold-dark);
+            line-height: 1.1;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .couple-and {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #888;
+            margin: 5px 0;
+            display: block;
+        }
+
+        /* ================= SCRATCH TO REVEAL CANVAS CARD ================= */
+        .scratch-card-section {
+            background: linear-gradient(180deg, rgba(18, 58, 52, 0.92), rgba(11, 22, 20, 0.96));
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            padding: clamp(24px, 4vw, 38px) clamp(18px, 3vw, 28px);
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+            box-shadow: var(--shadow-gold);
+            overflow: hidden;
+        }
+
+        .scratch-card-section::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border-radius: 22px;
+            border: 1px solid rgba(215, 179, 106, 0.25);
+            pointer-events: none;
+        }
+
+        .scratch-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            text-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+        }
+
+        .scratch-container {
+            position: relative;
+            width: min(100%, 320px);
+            height: 250px;
+            margin: 20px auto;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(215, 179, 106, 0.75);
+            background:
+                radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.18), transparent 18%),
+                linear-gradient(135deg, rgba(17, 34, 31, 0.82), rgba(20, 66, 58, 0.94));
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.32), inset 0 0 25px rgba(215, 179, 106, 0.08);
+        }
+
+        .scratch-underlayer {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(244, 228, 183, 0.28), transparent 30%),
+                linear-gradient(135deg, rgba(10, 24, 22, 0.95), rgba(22, 59, 53, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 20px;
+            transition: transform 0.8s ease, opacity 0.8s ease, filter 0.8s ease;
+        }
+
+        .scratch-underlayer::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(215, 179, 106, 0.4);
+            box-shadow: inset 0 0 18px rgba(215, 179, 106, 0.1);
+        }
+
+        .scratch-container.revealed .scratch-underlayer {
+            transform: scale(1.03);
+            opacity: 1;
+            filter: brightness(1.18) saturate(1.15);
+        }
+
+        .scratch-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(215, 179, 106, 0.25), rgba(255,255,255,0.06));
+            border: 1px solid rgba(215, 179, 106, 0.8);
+            color: var(--gold-light);
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+            box-shadow: 0 0 24px rgba(215, 179, 106, 0.22);
+            position: relative;
+            z-index: 1;
+        }
+
+        .scratch-underlayer h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scratch-underlayer p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 220px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #scratch-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            z-index: 2;
+            border-radius: 22px;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scratch-container.revealed #scratch-canvas {
+            opacity: 0;
+            transform: scale(1.02);
+        }
+
+        .scratch-sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: 3;
+        }
+
+        .scratch-container.revealed .scratch-sparkles {
+            opacity: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,1), rgba(215,179,106,0.85), rgba(215,179,106,0));
+            animation: sparkleFloat 1.3s ease-out forwards;
+            box-shadow: 0 0 12px rgba(215, 179, 106, 0.7);
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                transform: translate(0, 0) scale(0.3);
+                opacity: 0;
+            }
+            20% { opacity: 1; }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ================= COUNTDOWN SECTION ================= */
+        .countdown-card {
+            background: linear-gradient(180deg, rgba(20, 61, 56, 0.96), rgba(9, 21, 18, 0.96));
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            padding: clamp(24px, 4vw, 38px) clamp(18px, 3vw, 28px);
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .countdown-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.2rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto 25px auto;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 14px 5px;
+        }
+
+        .timer-num {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            display: block;
+        }
+
+        .timer-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .event-date-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--gold-primary);
+            padding: 10px 24px;
+            border-radius: 30px;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* ================= VENUE & DIRECTIONS ================= */
+        .venue-card {
+            background: linear-gradient(180deg, rgba(18, 58, 52, 0.96), rgba(9, 21, 18, 0.96));
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            padding: clamp(24px, 4vw, 38px) clamp(18px, 3vw, 28px);
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .venue-header-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.2rem;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+        }
+
+        .venue-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 8px;
+        }
+
+        .venue-details {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .map-frame-box {
+            width: 100%;
+            height: 220px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            margin-bottom: 20px;
+        }
+
+        .map-frame-box iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--gold-gradient);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ================= COMPLIMENTS CARD ================= */
+        .compliments-card-cream {
+            background: linear-gradient(180deg, #f8f3ee 0%, #f2e8df 100%);
+            color: var(--cream-text);
+            border-radius: 30px;
+            padding: clamp(26px, 4vw, 42px) clamp(18px, 3vw, 28px);
+            margin: 35px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12), 0 0 0 1px rgba(157, 116, 31, 0.5);
+            text-align: center;
+        }
+
+        .compliments-head {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #111B30;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .compliments-list {
+            list-style: none;
+            font-size: 0.92rem;
+            line-height: 2.1;
+            color: #333;
+        }
+
+        .compliments-footer {
+            margin-top: 25px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--gold-dark);
+            font-size: 0.95rem;
+        }
+
+        /* RSVP FORM */
+        .rsvp-card {
+            background: linear-gradient(180deg, rgba(18, 58, 52, 0.96), rgba(10, 23, 19, 0.98));
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            padding: clamp(24px, 4vw, 38px) clamp(18px, 3vw, 28px);
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .rsvp-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: #FFF;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0 8px;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 900px) {
+            .app-wrapper {
+                padding: 0 30px 90px;
+            }
+
+            .venue-card {
+                padding: 38px 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-wrapper {
+                padding: 0 14px 60px;
+            }
+
+            .hands-hero-card {
+                min-height: 520px;
+                margin-top: 14px;
+            }
+
+            .timer-grid {
+                grid-template-columns: repeat(2, minmax(120px, 1fr));
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                font-size: 15px;
+            }
+
+            .hands-hero-card {
+                min-height: 460px;
+                border-radius: 22px;
+            }
+
+            .hero-tagline {
+                letter-spacing: 2px;
+            }
+
+            .couple-display-name {
+                font-size: 3.2rem;
+            }
+
+            .timer-grid {
+                grid-template-columns: repeat(2, minmax(110px, 1fr));
+                gap: 10px;
+            }
+
+            .timer-box {
+                padding: 12px 6px;
+            }
+
+            .event-date-pill {
+                padding: 10px 16px;
+                font-size: 0.72rem;
+                line-height: 1.5;
+            }
+
+            .btn-gold {
+                width: 100%;
+            }
+
+            .map-frame-box {
+                height: 200px;
+            }
+
+            .card-inner-border {
+                padding: 24px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Floating Particles -->
+    <div id="particles-js"></div>
+
+    <audio id="background-music" src="assets/Muslim Digital Wedding Invitation Code-W100 Mob-8826761705.mp3" loop preload="auto"></audio>
+
+    <!-- ================= GRAND ROYAL GATE ENTRY ================= -->
+    <div id="royal-gate-overlay">
+        <div class="gate-door gate-left"></div>
+        <div class="gate-door gate-right"></div>
+        
+        <div class="gate-center-badge">
+            <div class="seal-circle" onclick="openRoyalGate()">
+                <div class="seal-inner">
+                    <i class="fas fa-star-and-crescent"></i>
+                    <span>TAP TO OPEN</span>
+                </div>
+            </div>
+            <div class="gate-names">Saba & Arbaz</div>
+            <div class="gate-sub">Royal Wedding Invitation</div>
+        </div>
+    </div>
+
+    <!-- ================= MAIN INVITATION APPLICATION ================= -->
+    <div class="app-wrapper">
+
+        <!-- HERO SECTION: BRIDE & GROOM HOLDING HANDS FIRST -->
+        <div class="hands-hero-card">
+            <div class="hero-bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <div class="hero-tagline">We Are Getting Married</div>
+            <div class="hero-couple-name">Saba & Arbaz</div>
+            
+            <a href="#card-section" class="scroll-down-btn" style="text-decoration: none;">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+
+        <header id="card-section">
+            <div class="bismillah-text">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <div class="bismillah-sub">In the name of Allah, the Most Beneficent, the Most Merciful</div>
+        </header>
+
+        <!-- INVITATION CARD -->
+        <div class="invitation-card-cream">
+            <div class="card-inner-border">
+                
+                <div class="arabic-greeting">Assalamualaikum Warahmatullahi Wabarakatuh</div>
+                <div class="greeting-translation">IN THE NAME OF ALLAH, THE MOST BENEFICENT AND MOST MERCIFUL</div>
+
+                <div class="gold-divider"></div>
+
+                <div class="blessings-header">WITH THE BLESSINGS OF</div>
+                <div class="family-block">
+                    <strong>Late Mr. Haji Gulab Ladji Shaikh</strong> (Dada)<br>
+                    &<br>
+                    <strong>Mrs. Hajjan Shanurbi Haji Gulab Shaikh</strong> (Dadi)
+                </div>
+
+                <div class="gold-divider"></div>
+
+                <div class="family-block">
+                    <strong>Mrs. Zeba & Mr. Dr. Aasif Gulab Shaikh</strong><br>
+                    <span style="font-size:0.8rem; color:#777;">&</span><br>
+                    <strong>Mrs. Jarinabi & Mr. Mustak Haji Gulab Shaikh</strong>
+                </div>
+
+                <p class="invite-phrase">
+                    Cordially invites your esteemed presence on the auspicious occasion of the<br>
+                    <strong>'Nikah Ceremony'</strong> of their Beloved Daughter
+                </p>
+
+                <div class="couple-name-box">
+                    <div class="couple-display-name">Saba</div>
+                    <span class="couple-and">&</span>
+                    <div class="couple-display-name">Arbaz</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- COMPLIMENTS CARD -->
+        <div class="compliments-card-cream">
+            <div class="compliments-head">WITH BEST COMPLIMENTS FROM</div>
+            <div class="gold-divider"></div>
+            
+            <ul class="compliments-list">
+                <li>Mrs. & Mr. Mustak Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Nawab Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Haji Faiz Ahmed Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Nazir Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Iqbal Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Dr. Haji Aasif Haji Gulab Shaikh</li>
+                <li>Mrs. & Mr. Azim Haji Gulab Shaikh</li>
+                <li>Mst. Zaid Mustak Shaikh</li>
+                <li>Mrs. & Mr. Dr. Aakif Tanveer Shaikh (Kalyan)</li>
+            </ul>
+
+            <div class="compliments-footer">
+                & All Cousins, Brother's, Sister's, Shaikh Family, Relatives & Friends
+            </div>
+        </div>
+
+        <!-- SCRATCH TO REVEAL CARD -->
+        <div class="scratch-card-section">
+            <div class="scratch-title">Scratch to Reveal</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Scratch or tap the surface below to reveal a special blessing note</p>
+            
+            <div class="scratch-container" id="scratchContainer">
+                <div class="scratch-underlayer">
+                    <div class="scratch-icon"><i class="fas fa-heart"></i></div>
+                    <h4>You're Invited!</h4>
+                    <p>Your presence & prayers will make our special day truly complete.</p>
+                </div>
+                <canvas id="scratch-canvas" width="310" height="240"></canvas>
+                <div class="scratch-sparkles" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN SECTION -->
+        <div class="countdown-card">
+            <div class="countdown-title">Counting Down to Forever</div>
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <span class="timer-num" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="minutes">00</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-num" id="seconds">00</span>
+                    <span class="timer-label">Seconds</span>
+                </div>
+            </div>
+            
+            <div class="event-date-pill">
+                <i class="far fa-calendar-check"></i> THURSDAY, 12 NOVEMBER 2026
+            </div>
+        </div>
+
+        <!-- VENUE & MAP -->
+        <div class="venue-card">
+            <div class="venue-header-title">Venue Location</div>
+            <div class="venue-name">Medtiya Ground</div>
+            <div class="venue-details">
+                Near Bhayander Flyover, Lodha Road,<br>
+                Mira Road East, Thane - 401107
+            </div>
+
+            <!-- <div class="map-frame-box">
+                <iframe 
+                    src="https://maps.google.com/?q=Medtiya+Ground+Mira+Road+East" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div> -->
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://maps.google.com/?q=Medtiya+Ground+Mira+Road+East" target="_blank" class="btn-gold">
+                    <i class="fas fa-location-arrow"></i> Get Directions
+                </a>
+                <button onclick="addToGoogleCalendar()" class="btn-gold" style="background: transparent; border: 1px solid var(--gold-primary); color: var(--gold-light);">
+                    <i class="far fa-calendar-plus"></i> Save Event
+                </button>
+            </div>
+        </div>
+
+        <!-- RSVP CARD -->
+        <div class="rsvp-card">
+            <div class="rsvp-title">Confirm Your Presence</div>
+            <form onsubmit="submitRSVP(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-input" placeholder="e.g. Imran Khan" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Attending Guests</label>
+                    <select class="form-input" required style="background: #0D1527;">
+                        <option value="1">1 Person</option>
+                        <option value="2">2 Persons</option>
+                        <option value="3+">3+ Family Members</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">
+                    <i class="fas fa-paper-plane"></i> Send Confirmation
+                </button>
+            </form>
+        </div>
+
+        <!-- <footer>
+            Crafted for Saba & Arbaz's Wedding | 12.11.2026
+        </footer> -->
+
+    </div>
+
+    <button class="audio-btn" id="audio-toggle" onclick="toggleAudio()" title="Toggle Music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- JavaScript Execution -->
+    <script>
+        const audioBtn = document.getElementById('audio-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+        let musicEnabled = false;
+
+        function setAudioState(shouldPlay) {
+            musicEnabled = shouldPlay;
+            audioBtn.classList.toggle('playing', shouldPlay);
+
+            if (!shouldPlay) {
+                backgroundMusic.pause();
+                return;
+            }
+
+            backgroundMusic.play().catch((error) => {
+                if (!musicEnabled) return;
+                setAudioState(false);
+                console.error('Unable to play the background music:', error);
+            });
+        }
+
+        // Backspace safety: prevent browser back navigation when not editing text
+        window.addEventListener('keydown', (event) => {
+            const active = document.activeElement;
+            const activeTag = active && active.tagName;
+            const isTextEditing = activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT' || (active && active.isContentEditable);
+
+            if (event.key === 'Backspace' && !isTextEditing && !event.ctrlKey && !event.metaKey && !event.altKey) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, true);
+
+        // Particles Generator
+        const pContainer = document.getElementById('particles-js');
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.width = Math.random() * 4 + 2 + 'px';
+            p.style.height = p.style.width;
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.animationDelay = Math.random() * 5 + 's';
+            pContainer.appendChild(p);
+        }
+
+        // Royal Gate Opening Function
+        function openRoyalGate() {
+            const overlay = document.getElementById('royal-gate-overlay');
+            overlay.classList.add('doors-open');
+            
+            setTimeout(() => {
+                overlay.classList.add('gate-dismissed');
+            }, 1200);
+
+            setAudioState(true);
+        }
+
+        // Audio Controller
+        function toggleAudio() {
+            setAudioState(!musicEnabled);
+        }
+
+        // Countdown Timer Logic
+        const targetWeddingDate = new Date('November 12, 2026 18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetWeddingDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scratch Canvas Initialization
+        const canvas = document.getElementById('scratch-canvas');
+        const scratchContainer = document.getElementById('scratchContainer');
+        const sparkleLayer = scratchContainer.querySelector('.scratch-sparkles');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+        drawMetallicScratchSurface();
+
+        let isScratching = false;
+
+        function createSparkles() {
+            sparkleLayer.innerHTML = '';
+            for (let i = 0; i < 18; i++) {
+                const sparkle = document.createElement('span');
+                sparkle.className = 'sparkle';
+                const x = 20 + Math.random() * (canvas.width - 40);
+                const y = 20 + Math.random() * (canvas.height - 40);
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                sparkle.style.setProperty('--dx', `${(Math.random() * 80 - 40).toFixed(2)}px`);
+                sparkle.style.setProperty('--dy', `${(Math.random() * 80 - 40).toFixed(2)}px`);
+                sparkle.style.animationDelay = `${(Math.random() * 0.5).toFixed(2)}s`;
+                sparkleLayer.appendChild(sparkle);
+            }
+        }
+
+        function finishScratchReveal() {
+            if (scratchContainer.classList.contains('revealed')) return;
+            scratchContainer.classList.add('revealed');
+            createSparkles();
+            setTimeout(() => {
+                canvas.style.pointerEvents = 'none';
+            }, 300);
+        }
+
+        function drawMetallicScratchSurface() {
+            const glow = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            glow.addColorStop(0, '#f4d58d');
+            glow.addColorStop(0.18, '#d9b86d');
+            glow.addColorStop(0.52, '#af7b2d');
+            glow.addColorStop(0.8, '#f0d68a');
+            glow.addColorStop(1, '#8d6422');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.10)';
+            for (let i = 0; i < 20; i++) {
+                ctx.fillRect(0, i * 13, canvas.width, 1);
+            }
+
+            ctx.fillStyle = 'rgba(70, 35, 0, 0.25)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#f7e7b8';
+            ctx.font = '700 20px Cinzel';
+            ctx.textAlign = 'center';
+            ctx.fillText('Scratch Here', canvas.width / 2, canvas.height / 2 - 10);
+
+            ctx.font = '600 12px Montserrat';
+            ctx.fillStyle = 'rgba(255,255,255,0.82)';
+            ctx.fillText('Reveal the blessing', canvas.width / 2, canvas.height / 2 + 18);
+        }
+
+        function scratch(e) {
+            if (!isScratching || scratchContainer.classList.contains('revealed')) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches?.[0]?.clientX || 0) - rect.left;
+            const y = (e.clientY || e.touches?.[0]?.clientY || 0) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            const radius = window.innerWidth < 520 ? 18 : 22;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            let cleared = 0;
+
+            for (let i = 3; i < imageData.length; i += 4) {
+                if (imageData[i] < 30) cleared++;
+            }
+
+            const percentCleared = cleared / (canvas.width * canvas.height);
+            if (percentCleared > 0.06) {
+                finishScratchReveal();
+            }
+        }
+
+        canvas.addEventListener('pointerdown', (event) => {
+            isScratching = true;
+            scratch(event);
+            canvas.setPointerCapture(event.pointerId);
+        });
+        canvas.addEventListener('pointerup', () => {
+            isScratching = false;
+        });
+        canvas.addEventListener('pointerleave', () => {
+            isScratching = false;
+        });
+        canvas.addEventListener('pointermove', scratch);
+        canvas.addEventListener('touchstart', (event) => {
+            isScratching = true;
+            scratch(event.touches[0]);
+        }, { passive: true });
+        canvas.addEventListener('touchmove', (event) => {
+            scratch(event.touches[0]);
+        }, { passive: true });
+        canvas.addEventListener('touchend', () => {
+            isScratching = false;
+        });
+
+        // RSVP Handler
+        function submitRSVP(e) {
+            e.preventDefault();
+            alert("JazakAllah Khair! Your RSVP response has been received.");
+            e.target.reset();
+        }
+
+        // Google Calendar Saver
+        function addToGoogleCalendar() {
+            const title = encodeURIComponent("Nikah Ceremony: Saba & Arbaz");
+            const details = encodeURIComponent("Nikah Ceremony of Saba & Arbaz at Medtiya Ground, Mira Road East.");
+            const location = encodeURIComponent("Medtiya Ground, Near Bhayander Flyover, Lodha Road, Mira Road East, Thane - 401107");
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261112T123000Z/20261112T170000Z&details=${details}&location=${location}`;
+            window.open(calendarUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
